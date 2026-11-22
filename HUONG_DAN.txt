@@ -1,0 +1,36 @@
+============================================================
+NHNZM CLIENT (v2.1) - GOI MA NGUON & DONG GOI IPA BLOCK BLAST
+============================================================
+
+LUU Y QUAN TRONG:
+Ban KHONG THE nen truc tiep thu muc ma nguon (.m) nay tren iPhone
+roi doi duoi thanh .ipa. Mot file .ipa chay duoc tren iPhone bat
+buoc phai chua file nhi phan ARM64 (Mach-O) da bien dich bang
+iOS SDK (NHNZMClient.dylib) va duoc nhung vao BlockBlast.ipa goc.
+
+CHON 1 TRONG 2 CACH DE XUAT RA FILE NHNZM_BlockBlast.ipa:
+
+------------------------------------------------------------
+CACH 1: BUILD OFFLINE TREN MAY TINH WINDOWS (KHONG CAN WEB)
+------------------------------------------------------------
+1. Cai dat 1 lan duy nhat trong Ubuntu (WSL2):
+   - PowerShell (Admin): wsl --install -d Ubuntu
+   - Trong Ubuntu:
+     sudo apt update && sudo apt install -y bash curl sudo python3 python3-pip zip unzip
+     bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
+     pip3 install lief --break-system-packages
+2. Chep file BlockBlast.ipa (ban da giai ma / decrypted) vao cung
+   thu muc giai nen cua goi nay.
+3. Chuot phai vao file "build_windows.ps1" -> Run with PowerShell
+   (hoac chay ./build_offline.sh trong Ubuntu).
+4. Lay file thanh pham "NHNZM_BlockBlast.ipa" dua sang iPhone cai
+   bang ESign / Feather / Sideloadly.
+
+------------------------------------------------------------
+CACH 2: BUILD TU DONG TREN GITHUB (LAM DUOC TREN DIEN THOAI)
+------------------------------------------------------------
+1. Tao 1 repo GitHub moi, upload toan bo cac file trong goi nay len.
+2. Vao tab Actions -> Auto Build NHNZM BlockBlast IPA -> Run workflow.
+3. Dan link tai truc tiep file BlockBlast.ipa (da giai ma) -> Run.
+4. Doi 1-2 phut, tai file NHNZM_BlockBlast.ipa trong muc Artifacts
+   ve iPhone va cai bang ESign / Feather / SideStore.
